@@ -9,8 +9,8 @@ setuptools.setup(
     author='Wevolver',
     version=version,
     author_email='felix@wevolver.com',
-    license='MIT',
-    url='https://bitbucket.org/wevolver/multiple',
+    license='GPL',
+    url='https://github.com/Wevolver/HAVE',
     classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',

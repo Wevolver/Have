@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import setuptools
 
-version = '0.1'
+version = '0.0.1'
 
 setuptools.setup(
     name='multiple',
@@ -15,19 +15,19 @@ setuptools.setup(
         'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',
         'License :: MIT',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
     ],
     packages=[
         'multiple',
     ],
     install_requires=[
-        'dulwich'
     ],
     extras_require={
         'dev': [],
+        'git_s3_backend': [
+            'dulwich',
+            'fastimport>=0.9.5',
+            'boto3'
+        ]
     },
 )

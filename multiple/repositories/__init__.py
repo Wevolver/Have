@@ -1,5 +1,9 @@
-from multiple.repositories.main import RepositoryBackend
+from multiple.repositories.main import (
+    IndexBase,
+    RepositoryBase,
+)
 
 __all__ = [
-    'RepositoryBackend',
+    'IndexBase',
+    'RepositoryBase',
 ]

@@ -1,3 +1,4 @@
+import botocore
 import io
 
 
@@ -48,8 +49,16 @@ class AwsS3GitFile(object):
 
         self._is_writable = None
 
-        s3_object = self.aws_key.get()
-        self._buffer = io.BytesIO(s3_object['Body'].read())
+        self._buffer = None
+        try:
+            s3_object = self.aws_key.get()
+        except botocore.exceptions.ClientError as e:
+            if e.response['Error']['Code'] == 'NoSuchKey' and self.is_writable:
+                self._buffer = io.BytesIO()
+            else:
+                raise
+        else:
+            self._buffer = io.BytesIO(s3_object['Body'].read())
 
         for method in self.PROXY_METHODS:
             setattr(self, method, getattr(self._buffer, method))

@@ -122,7 +122,7 @@ class AwsS3GitFile(object):
         return self._lock_name
 
     def writable(self):
-        return bool({'w', '+'} & set(self._mode_set))
+        return bool({'w', '+'} & self._mode_set)
 
     def write(self, *args, **kwarg):
         if self.is_writable:

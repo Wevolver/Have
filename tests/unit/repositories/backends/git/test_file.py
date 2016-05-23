@@ -11,7 +11,7 @@ def test_rb_mode_fail(aws_s3_bucket):
             'git-file-test-that-must-not-exist', 'rb', 0, aws_s3_bucket
         )
 
-    assert 'no sush file' in str(excinfo.value)
+    assert 'no such file' in str(excinfo.value)
 
 
 def test_rb_content_can_be_read(aws_s3_file, aws_s3_bucket):
@@ -45,7 +45,7 @@ def test_rb_can_not_be_write(aws_s3_file, aws_s3_bucket):
 
 def test_existing_rw_can_be_write(aws_s3_file, aws_s3_bucket):
     """Test that a file can be write and the content is properly flushed to the
-        s3 bucket when it's closed.
+       s3 bucket when it's closed.
     """
     content = b'1' * 20
     filename = aws_s3_file['filename']
@@ -60,8 +60,10 @@ def test_existing_rw_can_be_write(aws_s3_file, aws_s3_bucket):
         assert git_file.read() == content
 
 
-def test_new_rw_can_be_write(aws_s3_bucket, unique_filename):
-    """Test that a new rb file is create and can be write."""
+def test_new_wb_can_be_write(aws_s3_bucket, unique_filename):
+    """Test that when a non existing file is open in wb mode the file is
+       created and the content written can be read afterwards.
+    """
     content = b'1' * 20
 
     with git_aws.file.AwsS3GitFile(unique_filename, 'wb', 0, aws_s3_bucket) as git_file:  # noqa

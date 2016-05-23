@@ -56,7 +56,7 @@ class AwsS3GitFile(object):
             if e.response['Error']['Code'] == 'NoSuchKey' and self.is_writable:
                 self._buffer = io.BytesIO()
             else:
-                raise IOError('no sush file %r', self.name)
+                raise IOError('no such file %r', self.name)
         else:
             self._buffer = io.BytesIO(s3_object['Body'].read())
 

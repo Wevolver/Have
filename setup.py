@@ -17,17 +17,13 @@ setuptools.setup(
         'License :: MIT',
         'Programming Language :: Python :: 3.5',
     ],
-    packages=[
-        'multiple',
-    ],
+    packages=setuptools.find_packages(exclude=['tests*']),
     install_requires=[
+        'boto3',
+        'dulwich',
+        'fastimport>=0.9.5',
     ],
     extras_require={
-        'dev': [],
-        'git_s3_backend': [
-            'dulwich',
-            'fastimport>=0.9.5',
-            'boto3'
-        ]
+        'test': []
     },
 )

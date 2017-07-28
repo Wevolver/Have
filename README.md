@@ -1,3 +1,8 @@
+
+*Note 2017-07-28: with the release of **Wevolver/Welder** this project has become depricated*
+
+
+
 # Multiple 
 
 Storing complex objects in a version system.
